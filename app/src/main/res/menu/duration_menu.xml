@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="Duration">
+
+
+        <menu >
+            <group android:id="@+id/groupmaptype"
+                android:checkableBehavior="single">
+                <item android:id="@+id/twoMappoint"
+                    android:title="From Current Destinatation" />
+                <item android:id="@+id/fromCurrentLOcation"
+                    android:title="Choose Two Point" />
+
+            </group>
+        </menu>
+
+    </item>
+
+</menu>

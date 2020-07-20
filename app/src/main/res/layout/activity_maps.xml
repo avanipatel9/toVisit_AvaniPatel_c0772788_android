@@ -1,9 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        tools:context=".MapsActivity"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:elevation="10dp"
+        android:background="@drawable/white_border"
+        android:id="@+id/rel_layout1">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/ic_magnify"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_magnify"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/ic_magnify"
+            android:layout_centerVertical="true"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:id="@+id/input_search"
+            android:background="@null"
+            android:hint="Enter Address, City or Zip Code"
+            android:imeOptions="actionSearch"/>
+
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/h_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rel_layout1"
+        android:fillViewport="true">
+        <LinearLayout
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
+
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Clear"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btn_getlocatiomn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Current Location"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btn_restaurants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Restaurants"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btn_museum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Museums"
+                android:textColor="#000" />
+            <Button
+                android:id="@+id/btn_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Library"
+                android:textColor="#000" />
+            <Button
+                android:id="@+id/btn_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="School"
+                android:textColor="#000" />
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_cafe"
+                android:background="@drawable/white_oval_btn"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:textColor="#000"
+                android:text="Cafe"
+                android:onClick="btnClick" />
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_hospital"
+                android:background="@drawable/white_oval_btn"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:textColor="#000"
+                android:text="Hospital"
+                android:onClick="btnClick" />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/h_scroll_view"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/ic_gps"
+        android:src="@drawable/ic_gps"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ic_gps"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btn_direction"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_btn"
+            android:onClick="btnClick"
+            android:src="@drawable/ic_direction"
+            android:text="Get Direction"
+            android:textColor="#fff" />
+
+        <ImageButton
+            android:id="@+id/btn_Fav_place"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_btn"
+            android:onClick="btnClick"
+            android:src="@drawable/ic_favorites"
+            android:text="Get Direction"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+</RelativeLayout>
