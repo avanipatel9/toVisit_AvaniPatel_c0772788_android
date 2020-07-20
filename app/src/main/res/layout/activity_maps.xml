@@ -96,27 +96,6 @@
                 android:layout_marginRight="5dp"
                 android:layout_margin="5dp"
                 android:textColor="#000" />
-
-            <Button
-                android:id="@+id/btn_museum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/white_oval_btn"
-                android:onClick="btnClick"
-                android:text="Museums"
-                android:textColor="#000" />
-            <Button
-                android:id="@+id/btn_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/white_oval_btn"
-                android:onClick="btnClick"
-                android:text="Library"
-                android:textColor="#000" />
             <Button
                 android:id="@+id/btn_school"
                 android:layout_width="wrap_content"
@@ -147,6 +126,27 @@
                 android:textColor="#000"
                 android:text="Hospital"
                 android:onClick="btnClick" />
+
+            <Button
+                android:id="@+id/btn_museum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Museums"
+                android:textColor="#000" />
+            <Button
+                android:id="@+id/btn_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_oval_btn"
+                android:onClick="btnClick"
+                android:text="Library"
+                android:textColor="#000" />
 
 
         </LinearLayout>

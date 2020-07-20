@@ -102,6 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationRequest locationRequest;
 
     private static final String TAG = "MapsActivity";
+    private static final float DEFAULT_ZOOM = 15f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,6 +204,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
+            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
+                    address.getAddressLine(0));
+        }
+    }
+
+    private void moveCamera(LatLng latLng, float zoom, String title){
+        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+        if(!title.equals("My Location")){
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(title);
+            mMap.addMarker(options);
         }
     }
 
@@ -319,7 +334,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "resturent";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "restaurant", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_museum:
@@ -329,7 +343,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "museum";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "museum", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_cafe:
@@ -339,7 +352,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "cafe";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "cafe", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_library:
@@ -349,7 +361,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "library";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "library", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_school:
                 mMap.clear();
@@ -358,7 +369,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "school";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "Schools", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_hospital:
                 mMap.clear();
@@ -367,17 +377,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataTransfer[1] = url;
                 dataTransfer[2] = "hospital";
                 getNearByPlaceData.execute(dataTransfer);
-                Toast.makeText(this, "Hospital", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_clear:
                 mMap.clear();
                 break;
             case R.id.btn_Fav_place:
-
                 Intent intent = new Intent(this, FavoritePlacesActivity.class);
                 startActivity(intent);
                 break;
-
             case R.id.btn_direction:
                 Intent intent2 = new Intent(this, DurationAndDistanceActivity.class);
                 intent2.putExtra("isMain",true);
@@ -386,13 +393,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case R.id.btn_getlocatiomn:
                 getUserLocation();
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
                 mFusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
@@ -491,7 +491,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onInfoWindowClick(Marker marker) {
         System.out.println("MARKER: "+ marker.getTitle());
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("You want to add this place as Favourite?");
+        builder1.setMessage("Do you want to add this place as Favourite?");
         builder1.setCancelable(true);
         mMarker = marker;
         builder1.setPositiveButton(
@@ -504,10 +504,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String addDate = simpleDateFormat.format(calendar.getTime());
                         if (isOk && mDatabase.addFavPlace(mMarker.getTitle(), addDate, mMarker.getSnippet(), mMarker.getPosition().latitude, mMarker.getPosition().longitude)) {
                             isOk = false;
-
                         }
-                        //Toast.makeText(MainActivity.this, "Place Added As Favourite!", Toast.LENGTH_SHORT).show();
-
                     }
                 });
         builder1.setNegativeButton("no", new DialogInterface.OnClickListener() {
