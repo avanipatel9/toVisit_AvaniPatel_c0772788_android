@@ -21,6 +21,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class DurationAndDistanceActivity extends AppCompatActivity implements On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duration_and_distance);
+        getSupportActionBar().setTitle("Duration And Distance");
 
         initMap();
         getUserLocation();
@@ -87,6 +89,12 @@ public class DurationAndDistanceActivity extends AppCompatActivity implements On
         isDrag = intent.getBooleanExtra("edit", false);
 
         isMain = intent.getBooleanExtra("isMain", false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.map_type, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
